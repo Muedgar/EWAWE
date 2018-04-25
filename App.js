@@ -2,70 +2,19 @@ import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import { View, Text } from 'react-native';
 import { Button, Icon } from 'native-base';
-import { Logo, Forms, Housecard, Calculator, Mortgagedeals } from './src/components/index';
-
-// loans is a page that returns Mortgagedeals
-class Loans extends Component {
-  static navigationOptions = {
-    headerLeft: <Text
-                    style={{
-                             fontFamily: 'Arial',
-                             fontSize: 20,
-                             paddingLeft: 5,
-                             color: 'white',
-                             fontWeight: 'bold'
-                          }}
-                >
-                   Mortgage Loans & Rates
-                </Text>,
-    headerStyle: {
-      backgroundColor: '#009798',
-    },
-  }
-  render() {
-    return (
-      <View>
-      <Button
-        onPress={() => this.props.navigation.navigate('Home')}
-        title="Go back to homepage"
-      />
-      <Mortgagedeals />
-      </View>
-    );
-  }
-}
-
-
-// Calcs is a page that returns Calculator
-class Calcs extends Component {
-  static navigationOptions = {
-    headerLeft: <Text
-                    style={{
-                             fontFamily: 'Arial',
-                             fontSize: 20,
-                             paddingLeft: 5,
-                             color: 'white',
-                             fontWeight: 'bold'
-                          }}
-                >
-                   Mortgage Calculator
-                </Text>,
-    headerStyle: {
-      backgroundColor: '#009798',
-    },
-  }
-  render() {
-    return (
-      <View>
-      <Calculator />
-      </View>
-    );
-  }
-}
-
+import { Logo, Forms, Housecard } from './src/components/index';
 
 // Homescreen is a page that returns Housecard
-class Homescreen extends Component{
+const replacer = {
+       replacerStyle: {
+                         fontFamily: 'Arial',
+                         fontSize: 20,
+                         paddingLeft: 5,
+                         color: 'white',
+                         fontWeight: 'bold'
+                      }
+                 };
+class Homescreen extends Component {
   static navigationOptions = {
     headerStyle: {
       backgroundColor: '#009798',
@@ -76,17 +25,7 @@ class Homescreen extends Component{
                        style={{ color: 'white' }}
                     />
                  </Button>,
-    headerLeft: <Text
-                    style={{
-                             fontFamily: 'Arial',
-                             fontSize: 20,
-                             paddingLeft: 5,
-                             color: 'white',
-                             fontWeight: 'bold'
-                          }}
-                >
-                   Find House
-                </Text>
+    headerLeft: <Text style={replacer.replacerStyle}>Find House</Text>
   }
   render() {
     return (
@@ -97,7 +36,7 @@ class Homescreen extends Component{
 
 
 // Appscreen is a page that returns a login screen
-class Appscreen extends Component{
+class Appscreen extends Component {
     static navigationOptions = {
        header: null
     }
@@ -109,7 +48,7 @@ class Appscreen extends Component{
        <Forms style={{ flex: 1 }} />
        <View>
        <Button
-        onPress={() => this.props.navigation.navigate('Thirdscreen')}
+        onPress={() => this.props.navigation.navigate('Home')}
         style={{ width: 250, height: 40 }}
         backgroundColor='#009798'
        >
@@ -137,13 +76,7 @@ const RootStack = StackNavigator(
     },
     Home: {
       screen: Homescreen,
-    },
-    Thirdscreen: {
-      screen: Calcs,
-    },
-    Fourscreen: {
-      screen: Loans,
-    },
+    }
   },
   {
     initialRouteName: 'Firstscreen',
@@ -169,8 +102,10 @@ const RootStack = StackNavigator(
 //     }
 // };
 // this is a Component that returns RootStack
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return <RootStack />;
   }
 }
+
+export default App;
